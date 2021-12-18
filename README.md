@@ -13,56 +13,51 @@
 
 ### Association
 - has_many :items
-- has_one :destination
-- has_many :sallers
+- has_many :sellers
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| name            | string     | null: false                    |
-| description     | string     | null: false                    |
-| category        | string     | null: false                    |
-| status          | string     | null: false                    |
-| delivery_charge | string     | null: false                    |
-| delivery_source | string     | null: false                    |
-| delivery_days   | string     | null: false                    |
-| price           | string     | null: false                    |
-| listing_person  | string     | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| description        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| delivery_source_id | integer    | null: false                    |
+| delivery_days_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :saller
+- has_one :seller
 - belongs_to :user
 
-## sallers テーブル
+## sellers テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| name      | string     | null: false                    |
-| purchaser | string     | null: false                    |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :destination
 
 ## destinations テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| postal_code   | string     | null: false                    |
-| prefectures   | string     | null: false                    |
-| city          | string     | null: false                    |
-| block_number  | string     | null: false                    |
-| building_name | string     | null: false                    |
-| phone_number  | string     | null: false                    |
-| user_id       | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| postal_code        | string     | null: false                    |
+| delivery_source_id | integer    | null: false                    |
+| city               | string     | null: false                    |
+| block_number       | string     | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :user
-- has_one :saller
+- belongs_to :seller

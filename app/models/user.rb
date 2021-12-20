@@ -9,11 +9,11 @@ class User < ApplicationRecord
   end
   validates :nickname, presence: true
   validates :birth_date, presence: true
-  with_options presence: true, format: { with: /\A[一-龥ぁ-ん]/, message: 'is invalid. Input full-width characters' }, uniqueness: { case_sensitive: false } do
+  with_options presence: true, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, message: 'is invalid. Input full-width characters' } do
     validates :family_name
     validates :first_name
   end
-  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }, uniqueness: { case_sensitive: false } do
+  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' } do
     validates :family_name_kana
     validates :first_name_kana
   end

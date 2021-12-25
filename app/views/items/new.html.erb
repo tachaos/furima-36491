@@ -71,17 +71,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:delivery_charge_id, Delivery_charge.all, :id, :name, {}, {class:"select-box", id:"item-delivery_charge"}) %>
+        <%= f.collection_select(:delivery_charge_id, DeliveryCharge.all, :id, :name, {}, {class:"select-box", id:"item-delivery_charge"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:delivery_source_id, Delivery_source.all, :id, :name, {}, {class:"select-box", id:"item-delivery_source"}) %>
+        <%= f.collection_select(:delivery_source_id, DeliverySource.all, :id, :name, {}, {class:"select-box", id:"item-delivery_source"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:delivery_days_id, Delivery_days.all, :id, :name, {}, {class:"select-box", id:"item-delivery_days"}) %>
+        <%= f.collection_select(:delivery_days_id, DeliveryDays.all, :id, :name, {}, {class:"select-box", id:"item-delivery_days"}) %>
       </div>
     </div>
     <%# /配送について %>
@@ -138,7 +138,7 @@
     <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <%= f.submit "出品する" ,class:"sell-btn" %>
+      <%= f.submit "出品する", class:"sell-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>

@@ -5,6 +5,10 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def index
+    @items = Item.all.order(created_at: :desc)
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.valid?

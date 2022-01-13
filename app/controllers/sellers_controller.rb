@@ -20,7 +20,7 @@ class SellersController < ApplicationController
   private
 
   def seller_params
-    params.require(:seller_destination).permit(:postal_code, :delivery_source_id, :city, :block_number, :building_name, :phone_number).merge(user_id: current_user.id)
+    params.require(:seller_destination).permit(:postal_code, :delivery_source_id, :city, :block_number, :building_name, :phone_number, :seller_id).merge(user_id: current_user.id, item_id: @item.id)
   end
 
 end

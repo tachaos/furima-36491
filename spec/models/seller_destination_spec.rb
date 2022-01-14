@@ -47,6 +47,11 @@ RSpec.describe SellerDestination, type: :model do
         @seller_destination.valid?
         expect(@seller_destination.errors.full_messages).to include("Phone number is too short")
       end
+      it "tokenが空では登録できないこと" do
+        @seller_destination.token = nil
+        @seller_destination.valid?
+        expect(@seller_destination.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end

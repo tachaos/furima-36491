@@ -26,6 +26,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.present?
+      redirect_to root_path
+    end
   end
 
   def update

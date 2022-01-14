@@ -4,9 +4,6 @@ class SellersController < ApplicationController
 
   def index
     @seller_destination = SellerDestination.new
-    if @item.present?
-      redirect_to root_path
-    end
   end
 
   def create
@@ -24,6 +21,7 @@ class SellersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id || @item.seller.present?
   end
 
   def seller_params

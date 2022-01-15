@@ -4,7 +4,9 @@ RSpec.describe SellerDestination, type: :model do
   describe '配送先情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      @seller_destination = FactoryBot.build(:seller_destination, user_id: user.id)
+      item = FactoryBot.create(:item)
+      @seller_destination = FactoryBot.build(:seller_destination, user_id: user.id, item_id: item.id)
+      sleep(1)
     end
 
     context '内容に問題ない場合' do
@@ -47,10 +49,23 @@ RSpec.describe SellerDestination, type: :model do
         @seller_destination.valid?
         expect(@seller_destination.errors.full_messages).to include("Phone number is too short")
       end
+      it 'phone_numberが12桁以上では保存できないこと' do
+        @seller_destination.phone_number = '090999933333'
+        @seller_destination.valid?
+        expect(@seller_destination.errors.full_messages).to include("Phone number is too short")
+      end
       it "tokenが空では登録できないこと" do
         @seller_destination.token = nil
         @seller_destination.valid?
         expect(@seller_destination.errors.full_messages).to include("Token can't be blank")
+      end
+      it "userが紐付いていなければ投稿できない" do
+        @seller_destination.user_id = nil
+        @seller_destination.valid?
+      end
+      it "itemが紐付いていなければ投稿できない" do
+        @seller_destination.item_id = nil
+        @seller_destination.valid?
       end
     end
   end

@@ -62,10 +62,12 @@ RSpec.describe SellerDestination, type: :model do
       it "userが紐付いていなければ投稿できない" do
         @seller_destination.user_id = nil
         @seller_destination.valid?
+        expect(@seller_destination.errors.full_messages).to include("User can't be blank")
       end
       it "itemが紐付いていなければ投稿できない" do
         @seller_destination.item_id = nil
         @seller_destination.valid?
+        expect(@seller_destination.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

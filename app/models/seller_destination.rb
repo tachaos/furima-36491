@@ -10,9 +10,9 @@ class SellerDestination
     validates :block_number
     validates :phone_number, numericality: {only_integer: true, message: "is invalid.Input only number"}
     validates :delivery_source_id, numericality: { other_than: 0, message: "can't be blank" }
-    validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: "is too short" }
     validates :token
   end
+  validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: "is too short" }
 
     def save
       seller = Seller.create(user_id: user_id, item_id: item_id)

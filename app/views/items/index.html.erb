@@ -129,8 +129,8 @@
     <ul class='item-lists'>
 
       <% if @items[0] != nil %>
-      <li class='list'>
-        <% @items.each do |item| %>
+      <% @items.each do |item| %>
+        <li class='list'>
           <%= link_to item_path(item.id), method: :get do %>
             <div class='item-img-content'>
               <%= image_tag item.image, class: "item-img" if item.image.attached? %>
@@ -142,7 +142,6 @@
               <% end %>
 
             </div>
-          <% end %>
             <div class='item-info'>
               <h3 class='item-name'>
                 <%= item.name %>
@@ -155,8 +154,9 @@
                 </div>
               </div>
             </div>
-        <% end %>
-      </li>
+          <% end %>
+        </li>
+      <% end %>
       <% else %>
       <li class='list'>
         <%= link_to '#' do %>
